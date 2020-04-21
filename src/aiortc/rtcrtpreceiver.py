@@ -482,7 +482,7 @@ class RTCRtpReceiver:
                 packet.ssrc, sorted(self.__nack_generator.missing)
             )
             ###############################################################################3
-            if len(self.__nack_generator.missing) > 100:
+            if len(self.__nack_generator.missing) > 20:
                 #  _send_rtcp_pli
                 await self._send_rtcp_pli(packet.ssrc)
             ###############################################################################3333333
