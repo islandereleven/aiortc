@@ -77,6 +77,12 @@ class NackGenerator:
         self.max_seq: Optional[int] = None
         self.missing: Set[int] = set()
 
+    # @property
+    # def nack_count(self):
+    #    """
+    #    """
+    #    return len(self.missing)
+
     def add(self, packet: RtpPacket) -> bool:
         missed = False
 
@@ -254,7 +260,7 @@ class RTCRtpReceiver:
             self.__nack_generator = None
             self.__remote_bitrate_estimator = None
         else:
-            self.__jitter_buffer = JitterBuffer(capacity=128, prefetch=10)
+            self.__jitter_buffer = JitterBuffer(capacity=128)
             self.__nack_generator = NackGenerator()
             self.__remote_bitrate_estimator = RemoteBitrateEstimator()
         self._track: Optional[RemoteStreamTrack] = None
@@ -475,7 +481,11 @@ class RTCRtpReceiver:
             await self._send_rtcp_nack(
                 packet.ssrc, sorted(self.__nack_generator.missing)
             )
-
+            ###############################################################################3
+            if len(self.__nack_generator.missing) > 100:
+                #  _send_rtcp_pli
+                await self._send_rtcp_pli(packet.ssrc)
+            ###############################################################################3333333
         # parse codec-specific information
         try:
             if packet.payload:
