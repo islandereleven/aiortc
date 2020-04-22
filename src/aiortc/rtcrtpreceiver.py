@@ -424,9 +424,9 @@ class RTCRtpReceiver:
         """
         Handle an incoming RTP packet.
         """
-        self.__log_info("< %s", packet)
+        self.__log_debug("< %s", packet)
 
-        self.__log_info(f"NACK {self.__nack_generator.missing}")
+        self.__log_debug(f"NACK {self.__nack_generator.missing}")
         # feed bitrate estimator
         if self.__remote_bitrate_estimator is not None:
             if packet.extensions.abs_send_time is not None:
@@ -483,13 +483,13 @@ class RTCRtpReceiver:
                 packet.ssrc, sorted(self.__nack_generator.missing)
             )
             ###############################################################################3
-        self.__log_info(f"NACK {self.__nack_generator.missing}")
+        self.__log_debug(f"NACK {self.__nack_generator.missing}")
         if (
             self.__nack_generator is not None
             and len(self.__nack_generator.missing) > 20
         ):
             #  _send_rtcp_pli
-            self.__log_info("##############################PLIIIIIIIIIIIIIIIIIIIIIIII")
+            self.__log_debug("##############################PLIIIIIIIIIIIIIIIIIIIIIIII")
             await self._send_rtcp_pli(packet.ssrc)
             ###############################################################################3333333
         # parse codec-specific information
