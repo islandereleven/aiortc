@@ -260,7 +260,7 @@ class RTCRtpReceiver:
             self.__nack_generator = None
             self.__remote_bitrate_estimator = None
         else:
-            self.__jitter_buffer = JitterBuffer(capacity=128, prefetch=20)
+            self.__jitter_buffer = JitterBuffer(capacity=128)
             self.__nack_generator = NackGenerator()
             self.__remote_bitrate_estimator = RemoteBitrateEstimator()
         self._track: Optional[RemoteStreamTrack] = None
@@ -486,7 +486,7 @@ class RTCRtpReceiver:
         # self.__log_debug(f"NACK {self.__nack_generator.missing}")
         if (
             self.__nack_generator is not None
-            and len(self.__nack_generator.missing) > 100
+            and len(self.__nack_generator.missing) > 1000
         ):
             #  _send_rtcp_pli
             self.__log_debug("##############################PLIIIIIIIIIIIIIIIIIIIIIIII")
