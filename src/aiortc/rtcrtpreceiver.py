@@ -482,6 +482,7 @@ class RTCRtpReceiver:
                 packet.ssrc, sorted(self.__nack_generator.missing)
             )
             ###############################################################################3
+        print(f"NACK {self.__nack_generator.missing}")
         if (
             self.__nack_generator is not None
             and len(self.__nack_generator.missing) > 20
