@@ -482,10 +482,13 @@ class RTCRtpReceiver:
                 packet.ssrc, sorted(self.__nack_generator.missing)
             )
             ###############################################################################3
-            if len(self.__nack_generator.missing) > 20:
-                #  _send_rtcp_pli
-                print("##############################PLIIIIIIIIIIIIIIIIIIIIIIII")
-                await self._send_rtcp_pli(packet.ssrc)
+        if (
+            self.__nack_generator is not None
+            and len(self.__nack_generator.missing) > 20
+        ):
+            #  _send_rtcp_pli
+            print("##############################PLIIIIIIIIIIIIIIIIIIIIIIII")
+            await self._send_rtcp_pli(packet.ssrc)
             ###############################################################################3333333
         # parse codec-specific information
         try:
