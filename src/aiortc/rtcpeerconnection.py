@@ -890,6 +890,7 @@ class RTCPeerConnection(AsyncIOEventEmitter):
 
         # FIXME: in aiortc 1.0.0 emit RTCTrackEvent directly
         for event in trackEvents:
+            print("################### Si")
             self.emit("track", event.track)
 
         # connect
