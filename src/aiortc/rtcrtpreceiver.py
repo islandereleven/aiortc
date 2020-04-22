@@ -260,7 +260,7 @@ class RTCRtpReceiver:
             self.__nack_generator = None
             self.__remote_bitrate_estimator = None
         else:
-            self.__jitter_buffer = JitterBuffer(capacity=128)
+            self.__jitter_buffer = JitterBuffer(capacity=256, prefetch=10)
             self.__nack_generator = NackGenerator()
             self.__remote_bitrate_estimator = RemoteBitrateEstimator()
         self._track: Optional[RemoteStreamTrack] = None
