@@ -426,7 +426,7 @@ class RTCRtpReceiver:
         """
         self.__log_debug("< %s", packet)
 
-        self.__log_debug(f"NACK {self.__nack_generator.missing}")
+        # self.__log_debug(f"NACK {self.__nack_generator.missing}")
         # feed bitrate estimator
         if self.__remote_bitrate_estimator is not None:
             if packet.extensions.abs_send_time is not None:
