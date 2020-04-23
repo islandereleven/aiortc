@@ -20,6 +20,8 @@ PACKET_MAX = 1300
 
 DESCRIPTOR_T = TypeVar("DESCRIPTOR_T", bound="VpxPayloadDescriptor")
 
+logger = logging.getLogger("vpx")
+
 
 def number_of_threads(pixels: int, cpus: int) -> int:
     if pixels >= 1920 * 1080 and cpus > 8:
@@ -221,7 +223,10 @@ class Vp8Decoder(Decoder):
                         o_pos += o_stride
 
                 frames.append(frame)
-
+        elif result == lib.VPX_CODEC_OK_REQUEST_KEYFRAME:
+            logger.debug(
+                "Request key frame $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+            )
         return frames
 
 
