@@ -66,7 +66,10 @@ def decoder_worker(loop, input_q, output_q):
 
         for frame in decoder.decode(encoded_frame):
             logger.debug(
-                f"********************************************************* {frame.key_frame}"
+                f"********************************************************* {frame.key_frame()}"
+            )
+            logger.debug(
+                f"********************************************************* {frame}"
             )
             # pass the decoded frame to the track
             asyncio.run_coroutine_threadsafe(output_q.put(frame), loop)
