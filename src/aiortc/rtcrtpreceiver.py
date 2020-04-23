@@ -479,6 +479,7 @@ class RTCRtpReceiver:
 
         # send NACKs for any missing any packets
         if self.__nack_generator is not None and self.__nack_generator.add(packet):
+            self.__log_debug("############################## NACKKKKKKKKKKKKKKKKKKKK")
             await self._send_rtcp_nack(
                 packet.ssrc, sorted(self.__nack_generator.missing)
             )
