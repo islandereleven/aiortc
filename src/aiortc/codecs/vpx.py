@@ -21,7 +21,7 @@ PACKET_MAX = 1300
 
 DESCRIPTOR_T = TypeVar("DESCRIPTOR_T", bound="VpxPayloadDescriptor")
 
-logger = logging.getLogger("vpx")
+logger = logging.getLogger("rtp")
 
 
 def number_of_threads(pixels: int, cpus: int) -> int:
