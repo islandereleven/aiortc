@@ -494,6 +494,7 @@ class RTCRtpReceiver:
         ):
             #  _send_rtcp_pli
             self.__log_debug("##############################PLIIIIIIIIIIIIIIIIIIIIIIII")
+            self.__nack_generator.missing = set()
             await self._send_rtcp_pli(packet.ssrc)
         #    pass
         ###############################################################################3333333
