@@ -425,7 +425,7 @@ class RTCRtpReceiver:
         Handle an incoming RTP packet.
         """
         self.__log_debug("< %s", packet)
-
+        self.__log_debug("< %s", packet.__dict__)
         # self.__log_debug(f"NACK {self.__nack_generator.missing}")
         # feed bitrate estimator
         if self.__remote_bitrate_estimator is not None:
