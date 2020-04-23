@@ -394,7 +394,7 @@ class RTCRtpReceiver:
         self.__stop_decoder()
 
     async def _handle_rtcp_packet(self, packet: AnyRtcpPacket) -> None:
-        self.__log_debug("< %s", packet)
+        # self.__log_debug("< %s", packet)
 
         if isinstance(packet, RtcpSrPacket):
             self.__stats.add(
