@@ -65,7 +65,9 @@ def decoder_worker(loop, input_q, output_q):
             codec_name = codec.name
 
         for frame in decoder.decode(encoded_frame):
-            logger.debug(f"frame {frame.__dict__}")
+            logger.debug(
+                f"********************************************************* {frame.__dict__}"
+            )
             # pass the decoded frame to the track
             asyncio.run_coroutine_threadsafe(output_q.put(frame), loop)
 
@@ -515,9 +517,9 @@ class RTCRtpReceiver:
         # if we have a complete encoded frame, decode it
         if encoded_frame is not None and self.__decoder_thread:
 
-            self.__log_debug(
-                f"##############################FULL FRaeMMMMMMMMMMMMMMMMMMMMMMMMMMme \n {encoded_frame} \n {encoded_frame.__dict__}"
-            )
+            # self.__log_debug(
+            #    f"##############################FULL FRaeMMMMMMMMMMMMMMMMMMMMMMMMMMme \n {encoded_frame} \n {encoded_frame.__dict__}"
+            # )
             encoded_frame.timestamp = self.__timestamp_mapper.map(
                 encoded_frame.timestamp
             )

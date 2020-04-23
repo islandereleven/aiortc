@@ -376,6 +376,7 @@ class MediaRecorder:
         while True:
             try:
                 frame = await track.recv()
+                print(f"frame -------------- {frame}")
             except MediaStreamError:
                 return
             for packet in context.stream.encode(frame):
