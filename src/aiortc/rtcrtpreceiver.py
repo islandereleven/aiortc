@@ -515,7 +515,7 @@ class RTCRtpReceiver:
         if encoded_frame is not None and self.__decoder_thread:
 
             self.__log_debug(
-                "##############################FULL FRaeMMMMMMMMMMMMMMMMMMMMMMMMMMme"
+                f"##############################FULL FRaeMMMMMMMMMMMMMMMMMMMMMMMMMMme \n {encoded_frame} \n {encoded_frame.__dict__}"
             )
             encoded_frame.timestamp = self.__timestamp_mapper.map(
                 encoded_frame.timestamp

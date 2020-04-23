@@ -1,6 +1,5 @@
 import multiprocessing
 import random
-import logging
 from struct import pack, unpack_from
 from typing import List, Tuple, Type, TypeVar, cast
 
@@ -20,8 +19,6 @@ MAX_FRAME_RATE = 30
 PACKET_MAX = 1300
 
 DESCRIPTOR_T = TypeVar("DESCRIPTOR_T", bound="VpxPayloadDescriptor")
-
-logger = logging.getLogger("vpx")
 
 
 def number_of_threads(pixels: int, cpus: int) -> int:
@@ -195,9 +192,6 @@ class Vp8Decoder(Decoder):
             lib.VPX_DL_REALTIME,
         )
         if result == lib.VPX_CODEC_OK:
-            logger.debug(
-                "*******************************************************************************"
-            )
             it = ffi.new("vpx_codec_iter_t *")
             while True:
                 img = lib.vpx_codec_get_frame(self.codec, it)
@@ -227,10 +221,7 @@ class Vp8Decoder(Decoder):
                         o_pos += o_stride
 
                 frames.append(frame)
-        elif result == lib.VPX_CODEC_OK_REQUEST_KEYFRAME:
-            logger.debug(
-                "Request key frame $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-            )
+
         return frames
 
 
