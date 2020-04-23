@@ -195,6 +195,9 @@ class Vp8Decoder(Decoder):
             lib.VPX_DL_REALTIME,
         )
         if result == lib.VPX_CODEC_OK:
+            logger.debug(
+                "*******************************************************************************"
+            )
             it = ffi.new("vpx_codec_iter_t *")
             while True:
                 img = lib.vpx_codec_get_frame(self.codec, it)
