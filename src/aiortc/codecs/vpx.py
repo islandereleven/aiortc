@@ -21,7 +21,7 @@ PACKET_MAX = 1300
 
 DESCRIPTOR_T = TypeVar("DESCRIPTOR_T", bound="VpxPayloadDescriptor")
 
-logger = logging.getLogger("rtp")
+logger = logging.getLogger("vpx")
 
 
 def number_of_threads(pixels: int, cpus: int) -> int:
@@ -197,7 +197,11 @@ class Vp8Decoder(Decoder):
             ffi.NULL,
             lib.VPX_DL_REALTIME,
         )
-        self.__log_debug(f"{result}")
+        self.__log_debug(f"Result -> {result}")
+        self.__log_debug(f"Result VPX_CODEC_OK-> {lib.VPX_CODEC_OK}")
+        self.__log_debug(
+            f"Result VPX_CODEC_OK_REQUEST_KEYFRAME-> {lib.VPX_CODEC_OK_REQUEST_KEYFRAME}"
+        )
         if result == lib.VPX_CODEC_OK:
             it = ffi.new("vpx_codec_iter_t *")
             while True:
