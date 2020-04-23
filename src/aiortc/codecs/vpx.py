@@ -20,6 +20,8 @@ PACKET_MAX = 1300
 
 DESCRIPTOR_T = TypeVar("DESCRIPTOR_T", bound="VpxPayloadDescriptor")
 
+logger = logging.getLogger("vpx")
+
 
 def number_of_threads(pixels: int, cpus: int) -> int:
     if pixels >= 1920 * 1080 and cpus > 8:
@@ -182,6 +184,9 @@ class Vp8Decoder(Decoder):
     def __del__(self) -> None:
         lib.vpx_codec_destroy(self.codec)
 
+    def __log_debug(self, msg: str, *args) -> None:
+        logger.debug(f"decoder {msg}", *args)
+
     def decode(self, encoded_frame: JitterFrame) -> List[Frame]:
         frames: List[Frame] = []
         result = lib.vpx_codec_decode(
@@ -191,6 +196,7 @@ class Vp8Decoder(Decoder):
             ffi.NULL,
             lib.VPX_DL_REALTIME,
         )
+        self.__log_debug(f"{result}")
         if result == lib.VPX_CODEC_OK:
             it = ffi.new("vpx_codec_iter_t *")
             while True:
