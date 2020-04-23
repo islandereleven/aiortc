@@ -490,7 +490,7 @@ class RTCRtpReceiver:
         # self.__log_debug(f"NACK {self.__nack_generator.missing}")
         if (
             self.__nack_generator is not None
-            and len(self.__nack_generator.missing) > 100
+            and len(self.__nack_generator.missing) > 50
         ):
             #  _send_rtcp_pli
             self.__log_debug("##############################PLIIIIIIIIIIIIIIIIIIIIIIII")
