@@ -427,7 +427,7 @@ class RTCRtpReceiver:
         self.__log_debug("< %s", packet)
         self.__log_debug("< %s", packet.__dict__)
         self.__log_debug(
-            f"< len: {len(packet.payload)}, \n type: {packet.payload_type},\n marker: {payload.marker}"
+            f"< len: {len(packet.payload)}, \n type: {packet.payload_type},\n marker: {packet.marker}"
         )
         # self.__log_debug(f"NACK {self.__nack_generator.missing}")
         # feed bitrate estimator
