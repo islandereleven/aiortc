@@ -199,8 +199,9 @@ class Vp8Decoder(Decoder):
         )
         self.__log_debug(f"Result -> {result}")
         self.__log_debug(f"Result VPX_CODEC_OK-> {lib.VPX_CODEC_OK}")
+        self.__log_debug(f"Result VPX_FRAME_IS_KEY-> {lib.VPX_FRAME_IS_KEY}")
         self.__log_debug(
-            f"Result VPX_CODEC_OK_REQUEST_KEYFRAME-> {lib.VPX_CODEC_OK_REQUEST_KEYFRAME}"
+            f"Result VPX_CODEC_CORRUPT_FRAME-> {lib.VPX_CODEC_CORRUPT_FRAME}"
         )
         if result == lib.VPX_CODEC_OK:
             it = ffi.new("vpx_codec_iter_t *")
