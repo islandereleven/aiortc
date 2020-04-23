@@ -512,6 +512,10 @@ class RTCRtpReceiver:
 
         # if we have a complete encoded frame, decode it
         if encoded_frame is not None and self.__decoder_thread:
+
+            self.__log_debug(
+                "##############################FULL FRaeMMMMMMMMMMMMMMMMMMMMMMMMMMme"
+            )
             encoded_frame.timestamp = self.__timestamp_mapper.map(
                 encoded_frame.timestamp
             )
