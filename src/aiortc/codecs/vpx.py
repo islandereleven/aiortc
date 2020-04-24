@@ -252,7 +252,7 @@ class Vp8Decoder(Decoder):
                         ]
                         i_pos += i_stride
                         o_pos += o_stride
-                self.__log_debug(f"Frame -> {frame}")
+                # self.__log_debug(f"Frame -> {frame}")
                 frames.append(frame)
         # else ?
         elif result == lib.VPX_CODEC_CORRUPT_FRAME:
