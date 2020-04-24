@@ -255,7 +255,9 @@ class Vp8Decoder(Decoder):
                 self.__log_debug(f"Frame -> {frame}")
                 frames.append(frame)
         # else ?
-        # elif result == lib.VPX_CODEC_CORRUPT_FRAME:
+        elif result == lib.VPX_CODEC_CORRUPT_FRAME:
+            self.__log_debug(f"Corrupt Frame-> {result}")
+            # )
         # send PLI
         #    return None
         return frames
