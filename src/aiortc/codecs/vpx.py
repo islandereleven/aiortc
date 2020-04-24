@@ -197,32 +197,32 @@ class Vp8Decoder(Decoder):
             ffi.NULL,
             lib.VPX_DL_REALTIME,
         )
-        self.__log_debug(f"Result -> {result}")
-        self.__log_debug(f"Result VPX_CODEC_OK-> {lib.VPX_CODEC_OK}")
-        self.__log_debug(f"Result VPX_FRAME_IS_KEY-> {lib.VPX_FRAME_IS_KEY}")
-        self.__log_debug(
-            f"Result VPX_CODEC_CORRUPT_FRAME-> {lib.VPX_CODEC_CORRUPT_FRAME}"
-        )
-        self.__log_debug(f"Result VPX_CODEC_ERROR-> {lib.VPX_CODEC_ERROR}")
-        self.__log_debug(f"Result VPX_CODEC_MEM_ERROR-> {lib.VPX_CODEC_MEM_ERROR}")
+        # self.__log_debug(f"Result -> {result}")
+        # self.__log_debug(f"Result VPX_CODEC_OK-> {lib.VPX_CODEC_OK}")
+        # self.__log_debug(f"Result VPX_FRAME_IS_KEY-> {lib.VPX_FRAME_IS_KEY}")
+        # self.__log_debug(
+        #    f"Result VPX_CODEC_CORRUPT_FRAME-> {lib.VPX_CODEC_CORRUPT_FRAME}"
+        # )
+        # self.__log_debug(f"Result VPX_CODEC_ERROR-> {lib.VPX_CODEC_ERROR}")
+        # self.__log_debug(f"Result VPX_CODEC_MEM_ERROR-> {lib.VPX_CODEC_MEM_ERROR}")
 
-        self.__log_debug(
-            f"Result VPX_CODEC_ABI_MISMATCH-> {lib.VPX_CODEC_ABI_MISMATCH}"
-        )
+        # self.__log_debug(
+        #    f"Result VPX_CODEC_ABI_MISMATCH-> {lib.VPX_CODEC_ABI_MISMATCH}"
+        # )
 
-        self.__log_debug(
-            f"Result VPX_CODEC_UNSUP_BITSTREAM-> {lib.VPX_CODEC_UNSUP_BITSTREAM}"
-        )
-        self.__log_debug(
-            f"Result VPX_CODEC_UNSUP_FEATURE-> {lib.VPX_CODEC_UNSUP_FEATURE}"
-        )
-        self.__log_debug(
-            f"Result VPX_CODEC_CORRUPT_FRAME-> {lib.VPX_CODEC_CORRUPT_FRAME}"
-        )
-        self.__log_debug(
-            f"Result VPX_CODEC_INVALID_PARAM-> {lib.VPX_CODEC_INVALID_PARAM}"
-        )
-        self.__log_debug(f"Result VPX_CODEC_LIST_END-> {lib.VPX_CODEC_LIST_END}")
+        # self.__log_debug(
+        #    f"Result VPX_CODEC_UNSUP_BITSTREAM-> {lib.VPX_CODEC_UNSUP_BITSTREAM}"
+        # )
+        # self.__log_debug(
+        #    f"Result VPX_CODEC_UNSUP_FEATURE-> {lib.VPX_CODEC_UNSUP_FEATURE}"
+        # )
+        # self.__log_debug(
+        #    f"Result VPX_CODEC_CORRUPT_FRAME-> {lib.VPX_CODEC_CORRUPT_FRAME}"
+        # )
+        # self.__log_debug(
+        #    f"Result VPX_CODEC_INVALID_PARAM-> {lib.VPX_CODEC_INVALID_PARAM}"
+        # )
+        # self.__log_debug(f"Result VPX_CODEC_LIST_END-> {lib.VPX_CODEC_LIST_END}")
 
         if result == lib.VPX_CODEC_OK:
             it = ffi.new("vpx_codec_iter_t *")
@@ -255,9 +255,9 @@ class Vp8Decoder(Decoder):
                 self.__log_debug(f"Frame -> {frame}")
                 frames.append(frame)
         # else ?
-        elif result == lib.VPX_CODEC_CORRUPT_FRAME:
-            # send PLI
-            return None
+        # elif result == lib.VPX_CODEC_CORRUPT_FRAME:
+        # send PLI
+        #    return None
         return frames
 
 
