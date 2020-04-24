@@ -488,16 +488,7 @@ class RTCRtpReceiver:
             )
             ###############################################################################3
         # self.__log_debug(f"NACK {self.__nack_generator.missing}")
-        if (
-            self.__nack_generator is not None
-            and len(self.__nack_generator.missing) > 100
-        ) or (
-            self.__last_frame is not None
-            and (arrival_time_ms - self.__last_frame > 200)
-        ):
-            self.__log_debug("##############################PLIIIIIIIIIIIIIIIIIIIIIIII")
-            self.__nack_generator.missing = set()
-            await self._send_rtcp_pli(packet.ssrc)
+
         ###############################################################################3333333
         # parse codec-specific information
         try:
@@ -523,6 +514,16 @@ class RTCRtpReceiver:
                 encoded_frame.timestamp
             )
             self.__decoder_queue.put((codec, encoded_frame))
+        if (
+            self.__nack_generator is not None
+            and len(self.__nack_generator.missing) > 100
+        ) or (
+            self.__last_frame is not None
+            and (arrival_time_ms - self.__last_frame > 200)
+        ):
+            self.__log_debug("##############################PLIIIIIIIIIIIIIIIIIIIIIIII")
+            self.__nack_generator.missing = set()
+            await self._send_rtcp_pli(packet.ssrc)
 
     async def _run_rtcp(self) -> None:
         self.__log_debug("- RTCP started")
