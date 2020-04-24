@@ -65,9 +65,6 @@ def decoder_worker(loop, input_q, output_q):
             codec_name = codec.name
 
         for frame in decoder.decode(encoded_frame):
-            # logger.debug(
-            #    f"********************************************************* {frame}"
-            # )
             # pass the decoded frame to the track
             asyncio.run_coroutine_threadsafe(output_q.put(frame), loop)
 
@@ -493,13 +490,11 @@ class RTCRtpReceiver:
         # self.__log_debug(f"NACK {self.__nack_generator.missing}")
         if (
             self.__nack_generator is not None
-            and len(self.__nack_generator.missing) > 200
+            and len(self.__nack_generator.missing) > 100
         ):
-            #  _send_rtcp_pli
             self.__log_debug("##############################PLIIIIIIIIIIIIIIIIIIIIIIII")
             self.__nack_generator.missing = set()
             await self._send_rtcp_pli(packet.ssrc)
-        #    pass
         ###############################################################################3333333
         # parse codec-specific information
         try:
