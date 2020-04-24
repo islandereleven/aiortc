@@ -491,6 +491,9 @@ class RTCRtpReceiver:
         if (
             self.__nack_generator is not None
             and len(self.__nack_generator.missing) > 100
+        ) or (
+            self.__last_frame is not None
+            and (arrival_time_ms - self.__last_frame > 200)
         ):
             self.__log_debug("##############################PLIIIIIIIIIIIIIIIIIIIIIIII")
             self.__nack_generator.missing = set()
