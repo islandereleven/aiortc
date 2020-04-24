@@ -271,7 +271,7 @@ class RTCRtpReceiver:
         self.__stats = RTCStatsReport()
         self.__timestamp_mapper = TimestampMapper()
         self.__transport = transport
-
+        self.__last_frame = None
         # RTCP
         self.__lsr: Dict[int, int] = {}
         self.__lsr_time: Dict[int, float] = {}
@@ -490,7 +490,7 @@ class RTCRtpReceiver:
         # self.__log_debug(f"NACK {self.__nack_generator.missing}")
         if (
             self.__nack_generator is not None
-            and len(self.__nack_generator.missing) > 65
+            and len(self.__nack_generator.missing) > 100
         ):
             self.__log_debug("##############################PLIIIIIIIIIIIIIIIIIIIIIIII")
             self.__nack_generator.missing = set()
@@ -511,10 +511,11 @@ class RTCRtpReceiver:
 
         # if we have a complete encoded frame, decode it
         if encoded_frame is not None and self.__decoder_thread:
-
-            # self.__log_debug(
-            #    f"##############################FULL FRaeMMMMMMMMMMMMMMMMMMMMMMMMMMme \n {encoded_frame} \n {encoded_frame.__dict__}"
-            # )
+            if self.__last_frame is None:
+                self.__last_frame = arrival_time_ms
+            self.__log_debug(
+                f"##############################FULL FRaeMMMMMMMMMMMMMMMMMMMMMMMMMMme \n {self.__last_frame}"
+            )
             encoded_frame.timestamp = self.__timestamp_mapper.map(
                 encoded_frame.timestamp
             )
