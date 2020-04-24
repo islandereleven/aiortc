@@ -425,7 +425,7 @@ class RTCRtpReceiver:
         Handle an incoming RTP packet.
         """
         self.__log_debug("< %s", packet)
-        # self.__log_debug("< %s", packet.__dict__)
+        self.__log_debug("< %s", packet.__dict__)
         # self.__log_debug(
         #    f"< len: {len(packet.payload)}, \n type: {packet.payload_type},\n marker: {packet.marker}"
         # )
@@ -508,7 +508,7 @@ class RTCRtpReceiver:
             # if self.__last_frame is None:
             self.__last_frame = arrival_time_ms
             self.__log_debug(
-                f"##############################FULL FRaeMMMMMMMMMMMMMMMMMMMMMMMMMMme \n {encoded_frame}"
+                f"##############################FULL FRaeMMMMMMMMMMMMMMMMMMMMMMMMMMme \n {encoded_frame.data}"
             )
             encoded_frame.timestamp = self.__timestamp_mapper.map(
                 encoded_frame.timestamp
