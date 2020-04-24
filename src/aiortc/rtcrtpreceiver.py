@@ -505,8 +505,8 @@ class RTCRtpReceiver:
 
         # if we have a complete encoded frame, decode it
         if encoded_frame is not None and self.__decoder_thread:
-            if self.__last_frame is None:
-                self.__last_frame = arrival_time_ms
+            # if self.__last_frame is None:
+            self.__last_frame = arrival_time_ms
             self.__log_debug(
                 f"##############################FULL FRaeMMMMMMMMMMMMMMMMMMMMMMMMMMme \n {self.__last_frame}"
             )
@@ -519,7 +519,7 @@ class RTCRtpReceiver:
             and len(self.__nack_generator.missing) > 100
         ) or (
             self.__last_frame is not None
-            and (arrival_time_ms - self.__last_frame > 2000)
+            and (arrival_time_ms - self.__last_frame > 200)
         ):
             self.__log_debug("##############################PLIIIIIIIIIIIIIIIIIIIIIIII")
             self.__nack_generator.missing = set()
