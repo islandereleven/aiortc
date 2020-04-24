@@ -508,7 +508,7 @@ class RTCRtpReceiver:
             # if self.__last_frame is None:
             self.__last_frame = arrival_time_ms
             self.__log_debug(
-                f"##############################FULL FRaeMMMMMMMMMMMMMMMMMMMMMMMMMMme \n {self.__last_frame}"
+                f"##############################FULL FRaeMMMMMMMMMMMMMMMMMMMMMMMMMMme \n {encoded_frame}"
             )
             encoded_frame.timestamp = self.__timestamp_mapper.map(
                 encoded_frame.timestamp
